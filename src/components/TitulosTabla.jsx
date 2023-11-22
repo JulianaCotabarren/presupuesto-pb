@@ -2,35 +2,57 @@ import styled from "styled-components";
 
 const StyledDiv = styled.div`
   width: 50rem;
+  height: 2.5rem;
   display: flex;
   flex-direction: row;
-  justify-content: left;
+  align-items: center;
   font-size: 1rem;
   font-weight: 600;
+  background-color: #cacaca;
 `;
 
 const StyledCodigo = styled.ul`
-  font-size: 0.9rem;
   width: 5rem;
-  height: 1rem;
-  margin-left: 0.5rem;
+  font-size: 0.9rem;
+  height: 2.5rem;
+  margin: 0;
   padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 const StyledPractica = styled.ul`
+  width: 35rem;
   font-size: 0.9rem;
-  width: 40rem;
-  height: 1rem;
-  margin-left: 0.5rem;
+  height: 2.5rem;
+  margin: 0;
   padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 const StyledUb = styled.ul`
-  font-size: 0.9rem;
   width: 5rem;
-  height: 1rem;
-  margin-left: 0.5rem;
+  font-size: 0.9rem;
+  height: 2.5rem;
+  margin: 0;
   padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const StyledCalculo = styled.ul`
+  width: 5rem;
+  font-size: 0.9rem;
+  height: 2.5rem;
+  margin: 0;
+  padding-left: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 `;
 
 const TitulosTabla = () => {
@@ -38,7 +60,8 @@ const TitulosTabla = () => {
     <StyledDiv>
       <StyledCodigo>Código</StyledCodigo>
       <StyledPractica>Práctica</StyledPractica>
-      <StyledUb>UB</StyledUb>
+      <StyledUb>UBs</StyledUb>
+      <StyledCalculo>Cálculo UB</StyledCalculo>
     </StyledDiv>
   );
 };
