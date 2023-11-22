@@ -1,10 +1,12 @@
 import "./App.css";
+import PracticasContainer from "./components/PracticasContainer";
+import PracticasProvider from "./context/PracticasProvider";
 
 function App() {
   return (
-    <div>
-      <h1>MG Laboratorio Bioquímico</h1>
-    </div>
+    <PracticasProvider>
+      <PracticasContainer />
+    </PracticasProvider>
   );
 }
 
