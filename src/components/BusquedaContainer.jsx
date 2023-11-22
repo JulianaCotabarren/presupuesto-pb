@@ -47,7 +47,8 @@ const StyledAgregar = styled.button`
 `;
 
 const BusquedaContainer = () => {
-  const { practicas } = useContext(PracticasContext);
+  const { practicas, getPracticas, agregarPracticaSeleccionada } =
+    useContext(PracticasContext);
   const [codigoBuscado, setCodigoBuscado] = useState("");
   const [resultado, setResultado] = useState("");
 
@@ -74,7 +75,14 @@ const BusquedaContainer = () => {
   };
 
   const agregarPractica = () => {
-    console.log(`Agregar Práctica: ${resultado}`);
+    const practicaEncontrada = practicas.find(
+      (practica) => practica.id.toString() === codigoBuscado
+    );
+
+    if (practicaEncontrada) {
+      agregarPracticaSeleccionada(practicaEncontrada);
+    }
+    /* console.log(`Agregar Práctica: ${resultado}`); */
   };
 
   return (

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-/* import db from "../data/db.json"; */
 
 const usePracticas = () => {
   const [practicas, setPracticas] = useState([]);
