@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import { PracticasContext } from "../context/PracticasProvider";
 
 const StyledDiv = styled.div`
   width: 50rem;
@@ -47,20 +49,26 @@ const StyledCalculo = styled.ul`
   width: 5rem;
   font-size: 0.9rem;
   height: 1.5rem;
-  margin: 0;
-  padding-left: 0.5rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: left;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-right: 0.5rem;
+  padding-left: 0;
+  text-align: end;
 `;
 
 const PracticasRow = ({ id, nombre, ub }) => {
+  const { valorUb } = useContext(PracticasContext);
+
+  const ubNumero = parseFloat(ub);
+  const valorUbNumero = parseFloat(valorUb);
+  const resultadoCalculo = (ubNumero * valorUbNumero).toFixed(2);
+
   return (
     <StyledDiv>
       <StyledCodigo>{id}</StyledCodigo>
       <StyledPractica>{nombre}</StyledPractica>
       <StyledUb>{ub}</StyledUb>
-      <StyledCalculo>$</StyledCalculo>
+      <StyledCalculo>${resultadoCalculo}</StyledCalculo>
     </StyledDiv>
   );
 };
