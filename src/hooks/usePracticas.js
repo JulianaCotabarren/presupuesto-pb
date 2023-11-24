@@ -14,7 +14,6 @@ const usePracticas = () => {
       const info = await response.json();
       const practicas = info.practicas;
       setPracticas(practicas);
-      console.log(practicas);
     } catch (error) {
       console.log(error);
     }

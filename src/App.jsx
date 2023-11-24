@@ -10,7 +10,7 @@ function App() {
     <PracticasProvider>
       <BusquedaContainer />
       <ValorUbContainer />
-      <PracticasContainer />
+      {/* <PracticasContainer /> */}
       <PracticasSeleccionadasContainer />
     </PracticasProvider>
   );

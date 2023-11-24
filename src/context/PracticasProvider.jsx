@@ -1,7 +1,6 @@
 import { createContext } from "react";
 import usePracticas from "../hooks/usePracticas";
 import usePracticasSeleccionadas from "../hooks/usePracticasSeleccionadas";
-import useValorUb from "../hooks/useValorUb";
 
 export const PracticasContext = createContext("");
 
@@ -11,8 +10,9 @@ const PracticasProvider = ({ children }) => {
     practicasSeleccionadas,
     getPracticasSeleccionadas,
     agregarPracticaSeleccionada,
+    valorUb,
+    handleValorUbChange,
   } = usePracticasSeleccionadas();
-  const { valorUb, handleValorUbChange } = useValorUb();
 
   return (
     <PracticasContext.Provider

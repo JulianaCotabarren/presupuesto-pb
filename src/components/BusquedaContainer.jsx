@@ -82,7 +82,6 @@ const BusquedaContainer = () => {
     if (practicaEncontrada) {
       agregarPracticaSeleccionada(practicaEncontrada);
     }
-    /* console.log(`Agregar Práctica: ${resultado}`); */
   };
 
   return (

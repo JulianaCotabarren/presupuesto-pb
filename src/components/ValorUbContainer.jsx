@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import styled from "styled-components";
 import { PracticasContext } from "../context/PracticasProvider";
 
@@ -33,11 +33,6 @@ const StyledValor = styled.label`
 
 const ValorUbContainer = () => {
   const { valorUb, handleValorUbChange } = useContext(PracticasContext);
-  /*   const [valorUb, setValorUb] = useState(localStorage.getItem("valorUb") || "");
-
-  useEffect(() => {
-    localStorage.setItem("valorUb", valorUb);
-  }, [valorUb]); */
 
   const obtenerFechaActual = () => {
     const fecha = new Date();
@@ -51,10 +46,6 @@ const ValorUbContainer = () => {
   const handleFechaChange = (e) => {
     setFecha(e.target.value);
   };
-
-  /*   const handleValorUbChange = (e) => {
-    setValorUb(e.target.value);
-  }; */
 
   return (
     <StyledContainer>

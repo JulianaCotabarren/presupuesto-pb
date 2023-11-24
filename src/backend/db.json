@@ -5,8 +5,5 @@
         {"id": 4, "nombre": "ACIDIMETRIA GASTRICA, CURVA DE", "ub": 3},
         {"id": 5, "nombre": "ÁCIDO BASE, Estado Ácido Base (EAB)", "ub": 15}
     ],
-    "practicasSeleccionadas":[
-        {"id": 1, "nombre": "ACTO BIOQUÍMICO", "ub": 20},
-        {"id": 4, "nombre": "ACIDIMETRIA GASTRICA, CURVA DE", "ub": 3}
-    ]
+    "practicasSeleccionadas":[]
 }

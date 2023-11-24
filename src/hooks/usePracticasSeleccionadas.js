@@ -2,6 +2,19 @@ import { useEffect, useState } from "react";
 
 const usePracticasSeleccionadas = () => {
   const [practicasSeleccionadas, setPracticasSeleccionadas] = useState([]);
+  const storedValue = localStorage.getItem("valorUb");
+  const [valorUb, setValorUb] = useState(
+    storedValue ? parseFloat(storedValue) : 0
+  );
+
+  useEffect(() => {
+    localStorage.setItem("valorUb", valorUb);
+  }, [valorUb]);
+
+  const handleValorUbChange = (e) => {
+    const newValue = parseFloat(e.target.value);
+    setValorUb(isNaN(newValue) ? 0 : newValue);
+  };
 
   const getPracticasSeleccionadas = async () => {
     try {
@@ -12,9 +25,13 @@ const usePracticasSeleccionadas = () => {
         );
       }
       const info = await response.json();
-      const practicasSeleccionadas = info.practicasSeleccionadas;
+      const practicasSeleccionadas = info.practicasSeleccionadas.map(
+        (practica) => ({
+          ...practica,
+          resultadoCalculo: practica.ub * valorUb,
+        })
+      );
       setPracticasSeleccionadas(practicasSeleccionadas);
-      console.log(practicasSeleccionadas);
     } catch (error) {
       console.log(error);
     }
@@ -30,23 +47,32 @@ const usePracticasSeleccionadas = () => {
       }
       const data = await response.json();
 
-      const nuevasPracticasSeleccionadas = [
-        ...data.practicasSeleccionadas,
-        practica,
-      ];
+      const practicaExistente = practicasSeleccionadas.find(
+        (p) => p.id === practica.id
+      );
+      if (!practicaExistente) {
+        const resultadoCalculo = practica.ub * valorUb;
+        const nuevasPracticasSeleccionadas = [
+          ...practicasSeleccionadas,
+          { ...practica, resultadoCalculo },
+        ];
 
-      await fetch("../src/backend/db.json", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          ...data,
-          practicasSeleccionadas: nuevasPracticasSeleccionadas,
-        }),
-      });
-
-      setPracticasSeleccionadas(nuevasPracticasSeleccionadas);
+        await fetch("../src/backend/db.json", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            ...data,
+            practicasSeleccionadas: nuevasPracticasSeleccionadas,
+          }),
+        });
+        setPracticasSeleccionadas(nuevasPracticasSeleccionadas);
+      } else {
+        alert(
+          `La práctica correspondiente al código ${practica.id} ya fue seleccionada.`
+        );
+      }
     } catch (error) {
       console.error("Error al agregar práctica seleccionada", error);
     }
@@ -56,10 +82,23 @@ const usePracticasSeleccionadas = () => {
     getPracticasSeleccionadas();
   }, []);
 
+  useEffect(() => {
+    const calcularResultados = () => {
+      const resultados = practicasSeleccionadas.map((practica) => ({
+        ...practica,
+        resultadoCalculo: practica.ub * valorUb,
+      }));
+      setPracticasSeleccionadas(resultados);
+    };
+    calcularResultados();
+  }, [valorUb]);
+
   return {
     practicasSeleccionadas,
     getPracticasSeleccionadas,
     agregarPracticaSeleccionada,
+    valorUb,
+    handleValorUbChange,
   };
 };
 
