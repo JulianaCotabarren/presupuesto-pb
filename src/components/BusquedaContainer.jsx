@@ -27,7 +27,7 @@ const StyledResult = styled.label`
   color: green;
   text-transform: uppercase;
   width: 22rem;
-  margin-right: 2rem;
+  margin-right: 4rem;
 `;
 
 const StyledBuscar = styled.button`

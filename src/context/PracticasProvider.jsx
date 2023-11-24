@@ -10,6 +10,7 @@ const PracticasProvider = ({ children }) => {
     practicasSeleccionadas,
     getPracticasSeleccionadas,
     agregarPracticaSeleccionada,
+    eliminarPracticaSeleccionada,
     valorUb,
     handleValorUbChange,
   } = usePracticasSeleccionadas();
@@ -22,6 +23,7 @@ const PracticasProvider = ({ children }) => {
         practicasSeleccionadas,
         getPracticasSeleccionadas,
         agregarPracticaSeleccionada,
+        eliminarPracticaSeleccionada,
         valorUb,
         handleValorUbChange,
       }}

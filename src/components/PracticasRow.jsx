@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import { MdDeleteForever } from "react-icons/md";
 
 const StyledDiv = styled.div`
-  width: 50rem;
+  width: 52rem;
   display: flex;
   flex-direction: row;
   justify-content: left;
@@ -46,15 +47,25 @@ const StyledUb = styled.ul`
 const StyledCalculo = styled.ul`
   width: 5rem;
   font-size: 0.9rem;
+  border-right: 0.5px solid grey;
   height: 1.5rem;
   margin-top: 0;
   margin-bottom: 0;
-  margin-right: 0.5rem;
   padding-left: 0;
+  padding-right: 0.5rem;
   text-align: end;
 `;
 
-const PracticasRow = ({ id, nombre, ub, resultadoCalculo }) => {
+const StyledDelete = styled.div`
+  width: 2rem;
+  font-size: 1rem;
+`;
+
+const PracticasRow = ({ id, nombre, ub, resultadoCalculo, onDelete }) => {
+  const handleDeleteClick = () => {
+    onDelete(id);
+  };
+
   return (
     <>
       <StyledDiv>
@@ -62,6 +73,9 @@ const PracticasRow = ({ id, nombre, ub, resultadoCalculo }) => {
         <StyledPractica>{nombre}</StyledPractica>
         <StyledUb>{ub}</StyledUb>
         <StyledCalculo>${resultadoCalculo}</StyledCalculo>
+        <StyledDelete onClick={handleDeleteClick}>
+          <MdDeleteForever />
+        </StyledDelete>
       </StyledDiv>
     </>
   );

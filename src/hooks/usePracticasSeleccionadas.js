@@ -78,6 +78,37 @@ const usePracticasSeleccionadas = () => {
     }
   };
 
+  const eliminarPracticaSeleccionada = async (practicaId) => {
+    try {
+      const response = await fetch("../src/backend/db.json");
+      if (!response.ok) {
+        throw new Error(
+          `Error al cargar datos:${response.status} ${response.statusText}`
+        );
+      }
+      const data = await response.json();
+
+      const nuevasPracticasSeleccionadas = practicasSeleccionadas.filter(
+        (p) => p.id !== practicaId
+      );
+
+      await fetch("../src/backend/db.json", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...data,
+          practicasSeleccionadas: nuevasPracticasSeleccionadas,
+        }),
+      });
+
+      setPracticasSeleccionadas(nuevasPracticasSeleccionadas);
+    } catch (error) {
+      console.error("Error al eliminar práctica seleccionada", error);
+    }
+  };
+
   useEffect(() => {
     getPracticasSeleccionadas();
   }, []);
@@ -97,6 +128,7 @@ const usePracticasSeleccionadas = () => {
     practicasSeleccionadas,
     getPracticasSeleccionadas,
     agregarPracticaSeleccionada,
+    eliminarPracticaSeleccionada,
     valorUb,
     handleValorUbChange,
   };

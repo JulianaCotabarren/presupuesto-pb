@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const StyledDiv = styled.div`
-  width: 50rem;
+  width: 52rem;
   height: 2.5rem;
   display: flex;
   flex-direction: row;
@@ -45,7 +45,7 @@ const StyledUb = styled.ul`
 `;
 
 const StyledCalculo = styled.ul`
-  width: 5rem;
+  width: 7rem;
   font-size: 0.9rem;
   height: 2.5rem;
   margin: 0;
@@ -53,6 +53,7 @@ const StyledCalculo = styled.ul`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: start;
 `;
 
 const TitulosTabla = () => {

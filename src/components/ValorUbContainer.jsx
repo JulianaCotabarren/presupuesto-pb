@@ -27,7 +27,7 @@ const StyledInput = styled.input`
 const StyledValor = styled.label`
   font-size: 1rem;
   width: 5rem;
-  margin-left: 26rem;
+  margin-left: 28rem;
   margin-right: 0.5rem;
 `;
 

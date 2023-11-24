@@ -14,7 +14,8 @@ const StyledPracticas = styled.div`
 `;
 
 const PracticasSeleccionadasContainer = () => {
-  const { practicasSeleccionadas } = useContext(PracticasContext);
+  const { practicasSeleccionadas, eliminarPracticaSeleccionada } =
+    useContext(PracticasContext);
 
   return (
     <StyledContainer>
@@ -24,6 +25,7 @@ const PracticasSeleccionadasContainer = () => {
           <PracticasRow
             key={practicaSeleccionada.id}
             {...practicaSeleccionada}
+            onDelete={eliminarPracticaSeleccionada}
           />
         ))}
       </StyledPracticas>
