@@ -12,16 +12,37 @@ const StyledPracticas = styled.div`
   height: 60vh;
 `;
 
-const PracticasContainer = () => {
+const PracticasContainer = ({ searchText }) => {
   const { practicas } = useContext(PracticasContext);
+
+  let practicasFiltradasPorTitulo = [];
+
+  if (searchText) {
+    const title = searchText.toLowerCase().trim();
+    practicasFiltradasPorTitulo = practicas.filter((practica) =>
+      practica.nombre.toLowerCase().includes(title)
+    );
+  }
 
   return (
     <StyledContainer>
       <TitulosTabla mostrarTodos={false} />
       <StyledPracticas>
-        {practicas?.map((practica) => (
-          <PracticasRow key={practica.id} {...practica} mostrarTodos={false} />
-        ))}
+        {practicasFiltradasPorTitulo.length === 0
+          ? practicas?.map((practica) => (
+              <PracticasRow
+                key={practica.id}
+                {...practica}
+                mostrarTodos={false}
+              />
+            ))
+          : practicasFiltradasPorTitulo.map((practica) => (
+              <PracticasRow
+                key={practica.id}
+                {...practica}
+                mostrarTodos={false}
+              />
+            ))}
       </StyledPracticas>
     </StyledContainer>
   );
