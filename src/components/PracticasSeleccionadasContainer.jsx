@@ -19,13 +19,14 @@ const PracticasSeleccionadasContainer = () => {
 
   return (
     <StyledContainer>
-      <TitulosTabla />
+      <TitulosTabla mostrarTodos={true} />
       <StyledPracticas>
         {practicasSeleccionadas?.map((practicaSeleccionada) => (
           <PracticasRow
             key={practicaSeleccionada.id}
             {...practicaSeleccionada}
             onDelete={eliminarPracticaSeleccionada}
+            mostrarTodos={true}
           />
         ))}
       </StyledPracticas>

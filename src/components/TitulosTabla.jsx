@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const StyledDiv = styled.div`
-  width: 52rem;
+  /*   width: 52rem; */
   height: 2.5rem;
   display: flex;
   flex-direction: row;
@@ -56,13 +56,13 @@ const StyledCalculo = styled.ul`
   align-items: start;
 `;
 
-const TitulosTabla = () => {
+const TitulosTabla = ({ mostrarTodos = false }) => {
   return (
     <StyledDiv>
       <StyledCodigo>Código</StyledCodigo>
       <StyledPractica>Práctica</StyledPractica>
       <StyledUb>UBs</StyledUb>
-      <StyledCalculo>Cálculo UB</StyledCalculo>
+      {mostrarTodos && <StyledCalculo>Cálculo UB</StyledCalculo>}
     </StyledDiv>
   );
 };

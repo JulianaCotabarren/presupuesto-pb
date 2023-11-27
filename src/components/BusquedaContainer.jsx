@@ -1,102 +1,68 @@
-import { useContext, useState } from "react";
 import styled from "styled-components";
-import { PracticasContext } from "../context/PracticasProvider";
+import { MdOutlineSearch } from "react-icons/md";
+import { IoMdArrowRoundBack } from "react-icons/io";
+import { useState } from "react";
+import useBusqueda from "../hooks/useBusqueda";
 
 const StyledContainer = styled.div`
   background-color: #ececec;
-  height: 2rem;
+  height: 3rem;
   margin-bottom: 1rem;
   display: flex;
   flex-direction: row;
   align-items: center;
-`;
-
-const StyledEstudio = styled.label`
-  font-size: 1rem;
-  width: 5rem;
+  justify-content: center;
 `;
 
 const StyledInput = styled.input`
   font-size: 0.9rem;
-  width: 4rem;
+  width: 15rem;
+`;
+
+const StyledButton = styled.button`
+  width: 2rem;
+  height: 1.5rem;
+  background-color: transparent;
+  font-size: 1.2rem;
+  margin-left: 1rem;
   margin-right: 1rem;
-`;
-
-const StyledResult = styled.label`
-  font-size: 1rem;
-  color: green;
-  text-transform: uppercase;
-  width: 22rem;
-  margin-right: 4rem;
-`;
-
-const StyledBuscar = styled.button`
-  font-size: 0.9rem;
-  background-color: #ffc65d;
-  width: 6rem;
-  height: 1.5;
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
-const StyledAgregar = styled.button`
+const StyledListado = styled.button`
   font-size: 0.9rem;
-  background-color: #74cc74;
-  width: 8rem;
-  height: 1.5;
+  background-color: #fcf15a;
+  width: 10rem;
+  height: 1.6rem;
   padding: 0;
 `;
 
 const BusquedaContainer = () => {
-  const { practicas, getPracticas, agregarPracticaSeleccionada } =
-    useContext(PracticasContext);
-  const [codigoBuscado, setCodigoBuscado] = useState("");
-  const [resultado, setResultado] = useState("");
-
-  const buscarPractica = () => {
-    const practicaEncontrada = practicas.find(
-      (practica) => practica.id.toString() === codigoBuscado
-    );
-
-    if (practicaEncontrada) {
-      setResultado(practicaEncontrada.nombre);
-    } else {
-      setResultado("Práctica no encontrada");
-    }
-  };
-
-  const handleInputChange = (e) => {
-    setCodigoBuscado(e.target.value);
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      buscarPractica();
-    }
-  };
-
-  const agregarPractica = () => {
-    const practicaEncontrada = practicas.find(
-      (practica) => practica.id.toString() === codigoBuscado
-    );
-
-    if (practicaEncontrada) {
-      agregarPracticaSeleccionada(practicaEncontrada);
-    }
-  };
+  const { busqueda, handleChangeBusqueda, handleBuscar } = useBusqueda();
 
   return (
     <StyledContainer>
-      <StyledEstudio>Estudio:</StyledEstudio>
+      <StyledButton>
+        <IoMdArrowRoundBack />
+      </StyledButton>
       <StyledInput
-        value={codigoBuscado}
-        onChange={handleInputChange}
-        onKeyDown={handleKeyDown}
-      />
-      <StyledBuscar onClick={buscarPractica}>Buscar</StyledBuscar>
-      <StyledResult>{resultado}</StyledResult>
-      <StyledAgregar onClick={agregarPractica}>Agregar</StyledAgregar>
+        type="text"
+        placeholder="Nombre Práctica"
+        value={busqueda}
+        onChange={handleChangeBusqueda}
+      ></StyledInput>
+      <StyledButton onClick={handleBuscar}>
+        <MdOutlineSearch />
+      </StyledButton>
+      <StyledListado>Listado de Prácticas</StyledListado>
     </StyledContainer>
   );
 };
 
 export default BusquedaContainer;
+
+//Dado el siguiente código ... Escribe el código necesario para que, al ingresar un texto en el StyledInput de BusquedaContainer, se realice la búsqueda por nombre en el array practicas y luego, en PracticasContainer se muestren sólo las practicas que coinciden en nombre con el texto ingresado en el input. Además, si no se realizó ninguna búsqueda, que el PracticasContainer muestre el listado de todas las prácticas.

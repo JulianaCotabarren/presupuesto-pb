@@ -3,7 +3,6 @@ import { useContext, useEffect, useState } from "react";
 import { PracticasContext } from "../context/PracticasProvider";
 
 const StyledSubtotalContainer = styled.div`
-  width: 50rem;
   height: 2rem;
   background-color: #ececec;
   display: flex;
@@ -14,7 +13,7 @@ const StyledSubtotalContainer = styled.div`
 const StyledSubtotal = styled.label`
   font-size: 1rem;
   width: 5rem;
-  margin-left: 38rem;
+  margin-left: 40rem;
   margin-right: 0.5rem;
 `;
 

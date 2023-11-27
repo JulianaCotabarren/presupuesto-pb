@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { MdDeleteForever } from "react-icons/md";
 
 const StyledDiv = styled.div`
-  width: 52rem;
+  /*   width: 52rem; */
   display: flex;
   flex-direction: row;
   justify-content: left;
@@ -35,7 +35,6 @@ const StyledPractica = styled.ul`
 const StyledUb = styled.ul`
   width: 5rem;
   font-size: 0.9rem;
-  border-right: 0.5px solid grey;
   height: 1.5;
   margin: 0;
   padding-left: 0;
@@ -48,6 +47,7 @@ const StyledCalculo = styled.ul`
   width: 5rem;
   font-size: 0.9rem;
   border-right: 0.5px solid grey;
+  border-left: 0.5px solid grey;
   height: 1.5rem;
   margin-top: 0;
   margin-bottom: 0;
@@ -61,7 +61,14 @@ const StyledDelete = styled.div`
   font-size: 1rem;
 `;
 
-const PracticasRow = ({ id, nombre, ub, resultadoCalculo, onDelete }) => {
+const PracticasRow = ({
+  id,
+  nombre,
+  ub,
+  resultadoCalculo,
+  onDelete,
+  mostrarTodos = false,
+}) => {
   const handleDeleteClick = () => {
     onDelete(id);
   };
@@ -72,10 +79,12 @@ const PracticasRow = ({ id, nombre, ub, resultadoCalculo, onDelete }) => {
         <StyledCodigo>{id}</StyledCodigo>
         <StyledPractica>{nombre}</StyledPractica>
         <StyledUb>{ub}</StyledUb>
-        <StyledCalculo>${resultadoCalculo}</StyledCalculo>
-        <StyledDelete onClick={handleDeleteClick}>
-          <MdDeleteForever />
-        </StyledDelete>
+        {mostrarTodos && <StyledCalculo>${resultadoCalculo}</StyledCalculo>}
+        {mostrarTodos && (
+          <StyledDelete onClick={handleDeleteClick}>
+            <MdDeleteForever />
+          </StyledDelete>
+        )}
       </StyledDiv>
     </>
   );
