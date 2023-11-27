@@ -3,6 +3,7 @@ import { MdOutlineSearch } from "react-icons/md";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import { useState } from "react";
 import useBusqueda from "../hooks/useBusqueda";
+import { useNavigate } from "react-router-dom";
 
 const StyledContainer = styled.div`
   background-color: #ececec;
@@ -43,10 +44,15 @@ const StyledListado = styled.button`
 
 const BusquedaContainer = () => {
   const { busqueda, handleChangeBusqueda, handleBuscar } = useBusqueda();
+  const navigate = useNavigate();
+
+  const redirectToMain = () => {
+    navigate("/");
+  };
 
   return (
     <StyledContainer>
-      <StyledButton>
+      <StyledButton onClick={redirectToMain}>
         <IoMdArrowRoundBack />
       </StyledButton>
       <StyledInput

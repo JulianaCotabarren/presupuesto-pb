@@ -1,13 +1,11 @@
 import "./App.css";
 import PracticasProvider from "./context/PracticasProvider";
-import ListadoPracticas from "./pages/ListadoPracticas";
-import SeleccionPracticas from "./pages/SeleccionPracticas";
+import Router from "./routes";
 
 function App() {
   return (
     <PracticasProvider>
-      {/* <ListadoPracticas /> */}
-      <SeleccionPracticas />
+      <Router />
     </PracticasProvider>
   );
 }

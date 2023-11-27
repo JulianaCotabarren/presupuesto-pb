@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import styled from "styled-components";
 import { PracticasContext } from "../context/PracticasProvider";
+import { useNavigate } from "react-router-dom";
 
 const StyledContainer = styled.div`
   background-color: #ececec;
@@ -22,11 +23,19 @@ const StyledInput = styled.input`
   margin-right: 1rem;
 `;
 
+const StyledBuscar = styled.button`
+  font-size: 0.9rem;
+  background-color: #e6ad32;
+  width: 7rem;
+  height: 1.7rem;
+  padding: 0;
+`;
+
 const StyledResult = styled.label`
   font-size: 1rem;
   color: green;
   text-transform: uppercase;
-  width: 32rem;
+  width: 25rem;
 `;
 
 const StyledAgregar = styled.button`
@@ -42,6 +51,11 @@ const AgregarContainer = () => {
     useContext(PracticasContext);
   const [codigoBuscado, setCodigoBuscado] = useState("");
   const [resultado, setResultado] = useState("");
+  const navigate = useNavigate();
+
+  const redirectToBuscar = () => {
+    navigate("/buscar");
+  };
 
   const buscarPractica = () => {
     const practicaEncontrada = practicas.find(
@@ -84,6 +98,7 @@ const AgregarContainer = () => {
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
       />
+      <StyledBuscar onClick={redirectToBuscar}>Buscar Estudio</StyledBuscar>
       <StyledResult>{resultado}</StyledResult>
       <StyledAgregar onClick={agregarPractica}>Agregar</StyledAgregar>
     </StyledContainer>
