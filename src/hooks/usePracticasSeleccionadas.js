@@ -6,6 +6,7 @@ const usePracticasSeleccionadas = () => {
   const [valorUb, setValorUb] = useState(
     storedValue ? parseFloat(storedValue) : 0
   );
+  const [nroPractica, setNroPractica] = useState(1);
 
   useEffect(() => {
     localStorage.setItem("valorUb", valorUb);
@@ -111,6 +112,7 @@ const usePracticasSeleccionadas = () => {
 
   useEffect(() => {
     getPracticasSeleccionadas();
+    setNroPractica(practicasSeleccionadas.length + 1);
   }, []);
 
   useEffect(() => {
@@ -131,6 +133,8 @@ const usePracticasSeleccionadas = () => {
     eliminarPracticaSeleccionada,
     valorUb,
     handleValorUbChange,
+    nroPractica,
+    setNroPractica,
   };
 };
 

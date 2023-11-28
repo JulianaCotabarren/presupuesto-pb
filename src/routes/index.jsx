@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import SeleccionPracticas from "../pages/SeleccionPracticas";
 import ListadoPracticas from "../pages/ListadoPracticas";
-import ImprimirContainer from "../components/ImprimirContainer";
+import ImprimirPracticas from "../pages/ImprimirPracticas";
 
 const Router = () => {
   return (
@@ -9,7 +9,7 @@ const Router = () => {
       <Routes>
         <Route path="/*" element={<SeleccionPracticas />} />
         <Route path="/buscar" element={<ListadoPracticas />} />
-        <Route path="/imprimir" element={<ImprimirContainer />} />
+        <Route path="/imprimir" element={<ImprimirPracticas />} />
       </Routes>
     </>
   );

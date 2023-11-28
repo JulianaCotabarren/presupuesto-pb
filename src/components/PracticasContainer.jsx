@@ -10,6 +10,7 @@ const StyledContainer = styled.div`
 
 const StyledPracticas = styled.div`
   height: 60vh;
+  overflow-y: scroll;
 `;
 
 const PracticasContainer = ({ searchText }) => {

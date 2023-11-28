@@ -1,15 +1,18 @@
 import styled from "styled-components";
 import { MdPrint } from "react-icons/md";
-import { useState } from "react";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { PracticasContext } from "../context/PracticasProvider";
 
 const StyledTotalContainer = styled.div`
   height: 2.5rem;
-  background-color: #ececec;
+  background-color: ${(props) =>
+    props.mostrarImprimir ? "#ececec" : "transparent"};
   margin-top: 1rem;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: ${(props) => (props.mostrarImprimir ? "center" : "end")};
 `;
 
 const StyledLabel = styled.label`
@@ -23,7 +26,10 @@ const StyledInput = styled.input`
   font-size: 0.9rem;
   width: 5rem;
   height: 1.2rem;
-  border: 0.1rem solid #348d00;
+  border: ${(props) =>
+    props.mostrarImprimir
+      ? "0.1rem solid #348d00"
+      : "0.1rem solid transparent"};
   text-align: center;
 `;
 
@@ -39,25 +45,27 @@ const StyledButton = styled.button`
   align-items: center;
 `;
 
-const TotalContainer = () => {
-  const [total, setTotal] = useState(0);
-
-  const handleTotalChange = (e) => {
-    const newValue = e.target.value.replace(/[^0-9.,]/g, ""); // Eliminar cualquier caracter que no sea un dígito
-    setTotal(newValue);
-  };
+const TotalContainer = ({ mostrarImprimir = false }) => {
+  const { total, handleTotalChange } = useContext(PracticasContext);
+  const navigate = useNavigate();
 
   const handlePrint = () => {
-    console.log("print");
+    navigate("/imprimir");
   };
 
   return (
-    <StyledTotalContainer>
+    <StyledTotalContainer mostrarImprimir={mostrarImprimir}>
       <StyledLabel>Total:</StyledLabel>
-      <StyledInput value={`$${total}`} onChange={handleTotalChange} />
-      <StyledButton onClick={handlePrint}>
-        <MdPrint />
-      </StyledButton>
+      <StyledInput
+        value={`$${total}`}
+        onChange={handleTotalChange}
+        mostrarImprimir={mostrarImprimir}
+      />
+      {mostrarImprimir && (
+        <StyledButton onClick={handlePrint}>
+          <MdPrint />
+        </StyledButton>
+      )}
     </StyledTotalContainer>
   );
 };

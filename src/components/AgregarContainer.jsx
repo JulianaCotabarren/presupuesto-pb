@@ -35,7 +35,7 @@ const StyledResult = styled.label`
   font-size: 1rem;
   color: green;
   text-transform: uppercase;
-  width: 25rem;
+  width: 30rem;
 `;
 
 const StyledAgregar = styled.button`

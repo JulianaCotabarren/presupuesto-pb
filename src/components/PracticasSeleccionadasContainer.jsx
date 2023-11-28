@@ -11,6 +11,7 @@ const StyledContainer = styled.div`
 
 const StyledPracticas = styled.div`
   height: 40vh;
+  overflow-y: scroll;
 `;
 
 const PracticasSeleccionadasContainer = () => {
@@ -21,9 +22,10 @@ const PracticasSeleccionadasContainer = () => {
     <StyledContainer>
       <TitulosTabla mostrarTodos={true} />
       <StyledPracticas>
-        {practicasSeleccionadas?.map((practicaSeleccionada) => (
+        {practicasSeleccionadas?.map((practicaSeleccionada, index) => (
           <PracticasRow
             key={practicaSeleccionada.id}
+            nro={index + 1}
             {...practicaSeleccionada}
             onDelete={eliminarPracticaSeleccionada}
             mostrarTodos={true}

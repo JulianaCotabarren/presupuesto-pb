@@ -8,6 +8,18 @@ const StyledDiv = styled.div`
   justify-content: left;
 `;
 
+const StyledNro = styled.div`
+  width: 3rem;
+  font-size: 0.9rem;
+  border-right: 0.5px solid grey;
+  height: 1.5rem;
+  margin: 0;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
 const StyledCodigo = styled.ul`
   width: 5rem;
   font-size: 0.9rem;
@@ -59,10 +71,13 @@ const StyledCalculo = styled.ul`
 const StyledDelete = styled.div`
   width: 2rem;
   font-size: 1rem;
+  cursor: pointer;
+  color: #d10000;
 `;
 
 const PracticasRow = ({
   id,
+  nro,
   nombre,
   ub,
   resultadoCalculo,
@@ -76,6 +91,7 @@ const PracticasRow = ({
   return (
     <>
       <StyledDiv>
+        {mostrarTodos && <StyledNro>{nro}</StyledNro>}
         <StyledCodigo>{id}</StyledCodigo>
         <StyledPractica>{nombre}</StyledPractica>
         <StyledUb>{ub}</StyledUb>

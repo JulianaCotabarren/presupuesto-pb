@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { MdOutlineSearch } from "react-icons/md";
 import { IoMdArrowRoundBack } from "react-icons/io";
-import { TiDelete } from "react-icons/ti";
+import { GrPowerReset } from "react-icons/gr";
 import { useForm } from "../hooks/useForm";
 import { useLocation, useNavigate } from "react-router-dom";
 import queryString from "query-string";
@@ -45,15 +45,6 @@ const StyledForm = styled.form`
   flex-direction: row;
 `;
 
-/* const StyledListado = styled.button`
-  font-size: 0.9rem;
-  background-color: #fcf15a;
-  margin-left: 4rem;
-  width: 10rem;
-  height: 1.6rem;
-  padding: 0;
-`; */
-
 const BusquedaContainer = ({ onSearch }) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -96,16 +87,12 @@ const BusquedaContainer = ({ onSearch }) => {
             <MdOutlineSearch />
           </StyledButton>
           <StyledButton onClick={reset}>
-            <TiDelete />
+            <GrPowerReset />
           </StyledButton>
         </StyledForm>
-
-        {/* <StyledListado>Listado de Prácticas</StyledListado> */}
       </StyledContainer>
     </>
   );
 };
 
 export default BusquedaContainer;
-
-//Dado el siguiente código ... Escribe el código necesario para que, al ingresar un texto en el StyledInput de BusquedaContainer, se realice la búsqueda por nombre en el array practicas y luego, en PracticasContainer se muestren sólo las practicas que coinciden en nombre con el texto ingresado en el input. Además, si no se realizó ninguna búsqueda, que el PracticasContainer muestre el listado de todas las prácticas.

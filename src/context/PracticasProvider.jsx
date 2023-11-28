@@ -1,6 +1,7 @@
 import { createContext } from "react";
 import usePracticas from "../hooks/usePracticas";
 import usePracticasSeleccionadas from "../hooks/usePracticasSeleccionadas";
+import useTotal from "../hooks/useTotal";
 
 export const PracticasContext = createContext("");
 
@@ -13,7 +14,10 @@ const PracticasProvider = ({ children }) => {
     eliminarPracticaSeleccionada,
     valorUb,
     handleValorUbChange,
+    nroPractica,
+    setNroPractica,
   } = usePracticasSeleccionadas();
+  const { total, handleTotalChange, setTotal } = useTotal();
 
   return (
     <PracticasContext.Provider
@@ -26,6 +30,11 @@ const PracticasProvider = ({ children }) => {
         eliminarPracticaSeleccionada,
         valorUb,
         handleValorUbChange,
+        nroPractica,
+        setNroPractica,
+        total,
+        handleTotalChange,
+        setTotal,
       }}
     >
       {children}

@@ -7,7 +7,7 @@ const SeleccionPracticas = () => {
     <>
       <OperacionesContainer />
       <PracticasSeleccionadasContainer />
-      <TotalContainer />
+      <TotalContainer mostrarImprimir={true} />
     </>
   );
 };

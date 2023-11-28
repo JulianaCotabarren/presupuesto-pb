@@ -13,7 +13,7 @@ const StyledSubtotalContainer = styled.div`
 const StyledSubtotal = styled.label`
   font-size: 1rem;
   width: 5rem;
-  margin-left: 40rem;
+  margin-left: 43rem;
   margin-right: 0.5rem;
 `;
 
