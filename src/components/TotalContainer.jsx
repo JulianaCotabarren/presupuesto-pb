@@ -1,18 +1,17 @@
 import styled from "styled-components";
 import { MdPrint } from "react-icons/md";
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import { PracticasContext } from "../context/PracticasProvider";
+import { Link } from "react-router-dom";
 
 const StyledTotalContainer = styled.div`
   height: 2.5rem;
-  background-color: ${(props) =>
-    props.mostrarImprimir ? "#ececec" : "transparent"};
+  background-color: #ececec;
   margin-top: 1rem;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: ${(props) => (props.mostrarImprimir ? "center" : "end")};
+  justify-content: center;
 `;
 
 const StyledLabel = styled.label`
@@ -26,10 +25,7 @@ const StyledInput = styled.input`
   font-size: 0.9rem;
   width: 5rem;
   height: 1.2rem;
-  border: ${(props) =>
-    props.mostrarImprimir
-      ? "0.1rem solid #348d00"
-      : "0.1rem solid transparent"};
+  border: 0.1rem solid #348d00;
   text-align: center;
 `;
 
@@ -45,27 +41,18 @@ const StyledButton = styled.button`
   align-items: center;
 `;
 
-const TotalContainer = ({ mostrarImprimir = false }) => {
+const TotalContainer = () => {
   const { total, handleTotalChange } = useContext(PracticasContext);
-  const navigate = useNavigate();
-
-  const handlePrint = () => {
-    navigate("/imprimir");
-  };
 
   return (
-    <StyledTotalContainer mostrarImprimir={mostrarImprimir}>
+    <StyledTotalContainer>
       <StyledLabel>Total:</StyledLabel>
-      <StyledInput
-        value={`$${total}`}
-        onChange={handleTotalChange}
-        mostrarImprimir={mostrarImprimir}
-      />
-      {mostrarImprimir && (
-        <StyledButton onClick={handlePrint}>
+      <StyledInput value={`$${total}`} onChange={handleTotalChange} />
+      <Link to="/imprimir">
+        <StyledButton>
           <MdPrint />
         </StyledButton>
-      )}
+      </Link>
     </StyledTotalContainer>
   );
 };
