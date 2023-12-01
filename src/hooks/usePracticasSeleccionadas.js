@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const db = "../src/backend/db.json";
+const db = "../src/data/db.json";
 
 const usePracticasSeleccionadas = () => {
   const [practicasSeleccionadas, setPracticasSeleccionadas] = useState([]);
