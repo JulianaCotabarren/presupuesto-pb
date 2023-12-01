@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+const db = "../src/backend/db.json";
+
 const usePracticasSeleccionadas = () => {
   const [practicasSeleccionadas, setPracticasSeleccionadas] = useState([]);
   const storedValue = localStorage.getItem("valorUb");
@@ -19,7 +21,7 @@ const usePracticasSeleccionadas = () => {
 
   const getPracticasSeleccionadas = async () => {
     try {
-      const response = await fetch("../src/backend/db.json");
+      const response = await fetch(db);
       if (!response.ok) {
         throw new Error(
           `Error al cargar datos:${response.status} ${response.statusText}`
@@ -40,7 +42,7 @@ const usePracticasSeleccionadas = () => {
 
   const agregarPracticaSeleccionada = async (practica) => {
     try {
-      const response = await fetch("../src/backend/db.json");
+      const response = await fetch(db);
       if (!response.ok) {
         throw new Error(
           `Error al cargar datos:${response.status} ${response.statusText}`
@@ -58,7 +60,7 @@ const usePracticasSeleccionadas = () => {
           { ...practica, resultadoCalculo },
         ];
 
-        await fetch("../src/backend/db.json", {
+        await fetch(db, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -81,7 +83,7 @@ const usePracticasSeleccionadas = () => {
 
   const eliminarPracticaSeleccionada = async (practicaId) => {
     try {
-      const response = await fetch("../src/backend/db.json");
+      const response = await fetch(db);
       if (!response.ok) {
         throw new Error(
           `Error al cargar datos:${response.status} ${response.statusText}`
@@ -93,7 +95,7 @@ const usePracticasSeleccionadas = () => {
         (p) => p.id !== practicaId
       );
 
-      await fetch("../src/backend/db.json", {
+      await fetch(db, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
