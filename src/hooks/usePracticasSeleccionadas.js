@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import data from "../data/db";
 
-const db = "../src/data/db.json";
+/* const db = "../src/data/db.json"; */
 
 const usePracticasSeleccionadas = () => {
   const [practicasSeleccionadas, setPracticasSeleccionadas] = useState([]);
@@ -19,7 +20,7 @@ const usePracticasSeleccionadas = () => {
     setValorUb(isNaN(newValue) ? 0 : newValue);
   };
 
-  const getPracticasSeleccionadas = async () => {
+  /*   const getPracticasSeleccionadas = async () => {
     try {
       const response = await fetch(db);
       if (!response.ok) {
@@ -110,6 +111,47 @@ const usePracticasSeleccionadas = () => {
     } catch (error) {
       console.error("Error al eliminar práctica seleccionada", error);
     }
+  }; */
+
+  const getPracticasSeleccionadas = () => {
+    const practicasSeleccionadas = data.practicasSeleccionadas.map(
+      (practica) => ({
+        ...practica,
+        resultadoCalculo: practica.ub * valorUb,
+      })
+    );
+    setPracticasSeleccionadas(practicasSeleccionadas);
+  };
+
+  const agregarPracticaSeleccionada = (practica) => {
+    const practicaExistente = practicasSeleccionadas.find(
+      (p) => p.id === practica.id
+    );
+    if (!practicaExistente) {
+      const resultadoCalculo = practica.ub * valorUb;
+      const nuevasPracticasSeleccionadas = [
+        ...practicasSeleccionadas,
+        { ...practica, resultadoCalculo },
+      ];
+
+      setPracticasSeleccionadas(nuevasPracticasSeleccionadas);
+
+      data.practicasSeleccionadas = nuevasPracticasSeleccionadas;
+    } else {
+      alert(
+        `La práctica correspondiente al código ${practica.id} ya fue seleccionada.`
+      );
+    }
+  };
+
+  const eliminarPracticaSeleccionada = (practicaId) => {
+    const nuevasPracticasSeleccionadas = practicasSeleccionadas.filter(
+      (p) => p.id !== practicaId
+    );
+
+    setPracticasSeleccionadas(nuevasPracticasSeleccionadas);
+
+    data.practicasSeleccionadas = nuevasPracticasSeleccionadas;
   };
 
   useEffect(() => {
